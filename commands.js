@@ -21,7 +21,7 @@ exports.date = function(arg, done) {
 
 exports.ls = function(arg, done){
   // print(fs.readdirSync('.').join('\n'));
-   fs.readdir('.', (err, files) => {if(err) done(err); else (done(files)) })
+   fs.readdir('.', (err, files) => {if(err) done(err); else (done(files.join('\n'))) })
 };
 
 exports.echo = function(arg, done){
@@ -32,7 +32,7 @@ exports.echo = function(arg, done){
 exports.cat = function(arg, done){
     var str = '';
     arg.forEach(function(element){
-        fs.readFile(process.env.PWD +'/' + element, 'utf-8', (err, data) => {if(err) done(err);
+        fs.readFile(process.env.PWD +'/' + element, (err, data) => {if(err) done(err);
         else done(data)});
     });
 
